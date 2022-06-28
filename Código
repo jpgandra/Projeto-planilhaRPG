@@ -1,0 +1,350 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    int Atk, Def, Prof, a, v, dificuldade, Vida, Des, y;
+    int x=0;
+    while(x!=3)
+
+    {
+        printf("\n\n========================================");
+        printf("\n||1-teste de dano||2-simulacao||3-sair||\n");
+        printf("========================================\nDigite um comando:");
+        scanf("%i", &x);
+        if(x==1)
+        {
+            printf("=========================\n");
+            printf("||Digite seu Atk: ");
+            scanf("%d", &Atk);
+
+            printf("||Digite seu Def:");
+            scanf("%d", &Def);
+
+            printf("||Digite sua Prof:");
+            scanf("%d", &Prof);
+            printf("=========================\n");
+
+            int Ma = Atk / 5;
+            int Md = Def / 5;
+            int Mp = Prof / 2;
+            int Ir = (0.5 * Atk) + Ma + Mp;
+            int K =  (2 * Atk) + Ma + Mp;
+
+            do//Loop de ataques
+            {
+                y=0;
+
+                printf("\n\n=========================\n");
+                printf("||1-Ataque Normal      ||\n||2-Investida Relampago||\n||3-Kirin              ||\n");
+                printf("=========================\n");
+                printf("Pressione para usar um ataque: ");
+                scanf("%d", &a);
+
+                if (a==1)
+                {
+                    //Rodadndo dados de dano do ataque normal
+                    srand(time(NULL));
+                    int dice[5];
+                    for(int i=0; i<5; i++)
+                    {
+                        dice[i]= (rand()%4)+1;
+                    }
+                    int dano1 = dice[0] + dice[1] + dice[2] + dice[3] + dice[4] + Ma;
+
+                    for(int i=0; i<5; i++)//repetição para para escrever o valor dos dados.
+                    {
+                        if(i==0)
+                        {
+                            printf("\n\n========================\n");
+                            printf("||Dados: %d,", dice[i]);
+                        }
+                        if(i>0&&i<4)
+                            {printf(" %d,", dice[i]);}
+                        if(i==4)
+                        {
+                            printf(" %d||\n", dice[i]);
+                            printf("========================\n");
+                        }
+                    }
+                    printf("=======================\n");
+                    printf("||Seu dano e de: %d  ||\n", dano1);
+                    printf("=======================");
+                    getch();
+            }
+                if (a==2)
+                {
+                    printf("=======================\n");
+                    printf("||Seu dano e de: %d  ||\n", Ir);
+                    printf("=======================");
+                    getch();
+                }
+                if (a==3)
+                {
+                    printf("=======================\n");
+                    printf("||Seu dano e de: %d  ||\n", K);
+                    printf("=======================");
+                    getch();
+                }
+                if(a<1||a>3)
+                {
+                    printf("\n\n\n ___________________________________________\n");
+                    printf("|                                           |\n");
+                    printf("|Por favor digite um ataque valido!!!!!!!!!!|\n");
+                    printf("|___________________________________________|\n\n");
+                    y=1;//Declara y como 1, repetindo o loop de ataques
+                    getch();
+                }
+            }while(y==1);
+        }
+        if(x==2)
+        {
+            int d=0;
+            int i=0;
+            int k=0;
+            printf("================================================\n");
+            printf("||Digite o nivel de dificuldade do inimigo: ");
+            scanf("%i", &dificuldade);
+            int v = dificuldade*10;
+
+            printf("||Digite seu Atk:");
+            scanf("%d", &Atk);
+
+            printf("||Digite seu Def:");
+            scanf("%d", &Def);
+
+            printf("||Digite sua Prof:");
+            scanf("%d", &Prof);
+
+            printf("||Digite sua Vida:");
+            scanf("%d", &Vida);
+
+            printf("||Digite sua Destreza:");
+            scanf("%d", &Des);
+
+            printf("================================================");
+            printf("\n");
+
+            while(v>0&&Vida>0)
+            {
+                int Ma = Atk / 5;
+                int Md = Def / 5;
+                int Mdes = Des / 5;
+                int Mp = Prof / 2;
+                int Ir = (0.5 * Atk) + Ma + Mp;
+                int K =  (2 * Atk) + Ma + Mp;
+                int dano = dificuldade*2-Md;
+
+                do//Loop de ataques.
+                {
+                    y=0;
+
+                    printf("\n\n                                              ================================\n");
+                    printf("                                              ||Seu turno! Escolha um ataque||\n");
+                    printf("                                              ================================");
+                    printf("\n=========================\n");
+                    printf("||1-Ataque Normal      ||\n||2-Investida Relampago||\n||3-Kirin              ||\n");
+                    printf("=========================\n\n");
+                    printf("Pressione para usar um ataque: ");
+                    scanf("%d", &a);
+
+                    //Rodando dado de acerto do jogador.
+                    srand(time(NULL));
+
+                    int dadoacerto= (rand()%20)+1;
+                    dadoacerto= dadoacerto+Mdes;
+
+                    if (dadoacerto > 10)//Se o dado der maior que dez o jogador acerta o ataque.
+                    {
+                        if (a==1)
+                        {
+                            //Rodadndo dados de dano do ataque normal
+                            srand(time(NULL));
+                            int dice[5];
+                            for(int i=0; i<5; i++)
+                            {
+                                dice[i]= (rand()%4)+1;
+                            }
+                            int dano1 = dice[0] + dice[1] + dice[2] + dice[3] + dice[4] + Ma;
+
+                            for(int i=0; i<5; i++)//Repetição para para escrever o valor dos dados.
+                            {
+                                if(i==0)
+                                {
+                                    printf("\n\n=======================\n");
+                                    printf("||Dado: %d,", dice[i]);
+                                }
+                                if(i>0&&i<4)
+                                {
+                                    printf(" %d,", dice[i]);
+                                }
+                                if(i==4)
+                                {
+                                    printf(" %d||\n", dice[i]);
+                                    printf("=======================\n");
+                                }
+                            }
+                            printf("=========================\n");
+                            printf("||Seu dano foi de: %d  ||\n", dano1);
+                            printf("=========================\n");
+                            v=v-dano1;
+                            if(v>0)
+                            {
+                                printf("\n\n=================================\n");
+                                printf("||Vida restante do inimigo=%i  ||\n", v);
+                                printf("=================================\n\n");
+                            }
+                            else
+                            {
+                                printf("\n\n================================\n");
+                                printf("||Vida restante do inimigo=0  ||\n");
+                                printf("================================\n\n");
+                            }
+                            d++;//Guarda a quantidade de usos de ataques normais.
+                            printf("\n\n\nPressione Enter para prosseguir.........");
+                            getch();
+                    }
+                        if (a==2)
+                        {
+                            printf("\n\n=========================\n");
+                            printf("||Seu dano foi de: %d  ||\n", Ir);
+                            printf("=========================\n");
+                            v=v-Ir;
+                            if(v>0)
+                            {
+                                printf("\n\n=================================\n");
+                                printf("||Vida restante do inimigo=%i  ||\n", v);
+                                printf("=================================\n\n");
+                            }
+                            else
+                            {
+                                printf("\n\n================================\n");
+                                printf("||Vida restante do inimigo=0  ||\n");
+                                printf("================================\n\n");
+                            }
+                            i++;//Guarda a quantidade de usos de investidas relampago.
+                            printf("\n\n\nPressione Enter para prosseguir.........");
+                            getch();
+                        }
+                        if (a==3)
+                        {
+                            printf("\n\n=========================\n");
+                            printf("||Seu dano foi de: %d  ||\n", K);
+                            printf("=========================\n");
+                            v=v-K;
+                            if(v>0)
+                            {
+                                printf("\n\n=================================\n");
+                                printf("||Vida restante do inimigo=%i  ||\n", v);
+                                printf("=================================\n\n");
+                            }
+                            else
+                            {
+                                printf("\n\n================================\n");
+                                printf("||Vida restante do inimigo=0  ||\n");
+                                printf("================================\n\n");
+                            }
+                            k++;//Guarda a quantidade de usos de kirin.
+                            printf("\n\n\nPressione Enter para prosseguir.........");
+                            getch();
+                        }
+                    }
+
+                    if(a<1||a>3)
+                    {
+                            printf("\n\n\n ___________________________________________\n");
+                            printf("|                                           |\n");
+                            printf("|Por favor digite um ataque valido!!!!!!!!!!|\n");
+                            printf("|___________________________________________|\n\n");
+                            y=1;//Declara y com 1 repetindo o loop de ataques.
+
+                            printf("\n\n\nPressione Enter para prosseguir.........");
+                            getch();
+                    }
+                    if(dadoacerto<=10&&y==0)//Se o dado for menor ou igual a dez o ataque.
+                    {
+                        printf("\n\n========================\n");
+                        printf("||Seu ataque  falhou!!||\n");
+                        printf("========================\n");
+                        printf("\n\n\nPressione Enter para prosseguir.........");
+                        getch();
+                    }
+                    if(v>0&&y==0)
+                    {
+
+                        printf("\n\n                                                =====================\n");
+                        printf("                                                ||Turno do inimigo!||\n");
+                        printf("                                                =====================\n");
+                        printf("==============================\n");
+                        printf("||Inimigo declara um ataque!||\n");
+                        printf("==============================\n");
+
+                        //Rodadndo o dado de acerto do inimigo
+                        srand(time(NULL));
+                        int dadoacertoIni= (rand()%20)+1;
+
+                        if(dadoacertoIni>10&&y==0)//Se o dado der maior que dez o inimigo acerta o ataque.
+                        {
+                            Vida=Vida-dano;
+                            printf("============================\n");
+                            printf("||Voce recebeu %d de dano!||\n", dano);
+                            printf("============================\n");
+                            if(Vida>0)
+                            {
+                                printf("=========================\n");
+                                printf("||%d de vida restante!||\n", Vida);
+                                printf("=========================\n");
+                            }
+                            else
+                            {
+                                printf("=======================\n");
+                                printf("||0 de vida restante!||\n");
+                                printf("=======================\n");
+                            }
+                        }
+                        if(dadoacertoIni<=10&&y==0)//Se o dado der menor ou igual a dez o ataque do inimigo falha.
+                        {
+                            printf("\n\n==============================\n");
+                            printf("||ataque do inimigo falhou!!||\n");
+                            printf("==============================\n");
+                            printf("\n\n\nPressione Enter para prosseguir.........");
+                            getch();
+                        }
+                    }
+
+                }while(y==1);
+            }
+            if(Vida<=0)
+            {
+                printf("\n\n\n                                       ======================================\n");
+                printf("                                       ||          Derrota!!!!             ||\n");
+                printf("                                       ======================================\n\n\n\n");
+                printf("\n\n\nPressione Enter para prosseguir.........");
+                getch();
+            }
+            if(v<=0)
+            {
+                printf("\n\n\n                                       ======================================\n");
+                printf("                                       ||             Vitoria!             ||\n");
+                printf("                                       ======================================\n");
+                printf("\n                   ===========================================================================\n");
+                printf("                   ||Foram necessarios %i ataques normais, %i investidas relampagos e %i kirins||\n", d, i, k);
+                printf("                   ===========================================================================\n\n\n\n");
+                printf("\n\n\nPressione Enter para prosseguir.........");
+                getch();
+            }
+        }
+        if(x>3||x<1)
+        {
+            printf("\n\n\n ____________________________________________\n");
+            printf("|                                            |\n");
+            printf("|Por favor digite um comando valido!!!!!!!!!!|\n");
+            printf("|____________________________________________|");
+            printf("\n\n\nPressione Enter para prosseguir.........");
+            getch();
+        }
+    }
+    getch();
+    return 0;
+}
